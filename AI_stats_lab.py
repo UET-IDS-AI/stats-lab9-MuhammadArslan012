@@ -17,10 +17,25 @@ def joint_pmf(x, y):
     """
 
     table = {
-        (0, 0): 0.10, (0, 1): 0.05, (0, 2): 0.00, (0, 3): 0.00,
-        (1, 0): 0.15, (1, 1): 0.20, (1, 2): 0.05, (1, 3): 0.00,
-        (2, 0): 0.00, (2, 1): 0.10, (2, 2): 0.15, (2, 3): 0.05,
-        (3, 0): 0.00, (3, 1): 0.00, (3, 2): 0.05, (3, 3): 0.10
+        (0, 0): 0.10,
+        (0, 1): 0.05,
+        (0, 2): 0.00,
+        (0, 3): 0.00,
+
+        (1, 0): 0.15,
+        (1, 1): 0.20,
+        (1, 2): 0.05,
+        (1, 3): 0.00,
+
+        (2, 0): 0.00,
+        (2, 1): 0.10,
+        (2, 2): 0.15,
+        (2, 3): 0.05,
+
+        (3, 0): 0.00,
+        (3, 1): 0.00,
+        (3, 2): 0.05,
+        (3, 3): 0.10
     }
 
     return table.get((x, y), 0)
@@ -30,6 +45,7 @@ def marginal_px(x):
     """
     Compute PX(x) by summing joint_pmf(x, y) over y = 0,1,2,3.
     """
+
     total = 0
 
     for y in range(4):
@@ -42,6 +58,7 @@ def marginal_py(y):
     """
     Compute PY(y) by summing joint_pmf(x, y) over x = 0,1,2,3.
     """
+
     total = 0
 
     for x in range(4):
@@ -218,10 +235,10 @@ def correlation_xy():
     """
 
     cov = covariance_xy()
-    var_x = variance_x()
-    var_y = variance_y()
+    varx = variance_x()
+    vary = variance_y()
 
-    denominator = np.sqrt(var_x * var_y)
+    denominator = np.sqrt(varx * vary)
 
     if denominator == 0:
         return 0
@@ -234,15 +251,15 @@ def variance_sum():
     Compute Var(X+Y).
     """
 
-    ex_plus_y = expected_x() + expected_y()
+    exy = expected_x() + expected_y()
 
-    ex_plus_y_sq = 0
+    exy2 = 0
 
     for x in range(4):
         for y in range(4):
-            ex_plus_y_sq += ((x + y) ** 2) * joint_pmf(x, y)
+            exy2 += ((x + y) ** 2) * joint_pmf(x, y)
 
-    return ex_plus_y_sq - (ex_plus_y ** 2)
+    return exy2 - (exy ** 2)
 
 
 def variance_identity_check():
