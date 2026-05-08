@@ -238,7 +238,7 @@ def variance_sum():
 
     ex_plus_y_sq = 0
 
-    for x in range(4): as
+    for x in range(4):
         for y in range(4):
             ex_plus_y_sq += ((x + y) ** 2) * joint_pmf(x, y)
 
@@ -258,4 +258,4 @@ def variance_identity_check():
 
     rhs = variance_x() + variance_y() + 2 * covariance_xy()
 
-    return bool(np.isclose(lhs , rhs))
+    return bool(np.isclose(lhs, rhs))
