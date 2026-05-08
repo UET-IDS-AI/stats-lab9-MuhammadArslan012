@@ -258,4 +258,4 @@ def variance_identity_check():
 
     rhs = variance_x() + variance_y() + 2 * covariance_xy()
 
-    return bool(np.close(lhs , rhs)) karlo
+    return bool(np.close(lhs , rhs))
